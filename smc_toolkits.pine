@@ -1,18 +1,22 @@
 //@version=6
-indicator("SMC Toolkit", overlay=true)
+indicator("SMC Toolkit - BOS", overlay=true)
 
-// This is the first version of the SMC Toolkit.
-// More features will be added over time.
+length = input.int(5, "Swing Length", minval=1)
 
-// Plot the close price as a placeholder.
-plot(close, title="Close")
+swingHigh = ta.pivothigh(high, length, length)
+swingLow = ta.pivotlow(low, length, length)
 
-// Roadmap:
-// - Fair Value Gaps (FVG)
-// - Break of Structure (BOS)
-// - Change of Character (CHoCH)
-// - Order Blocks (OB)
-// - Liquidity Sweeps
-// - Premium & Discount Zones
-// - Session Boxes
-// - Alerts
+var float lastHigh = na
+var float lastLow = na
+
+if not na(swingHigh)
+    lastHigh := swingHigh
+
+if not na(swingLow)
+    lastLow := swingLow
+
+bullishBOS = not na(lastHigh) and close > lastHigh
+bearishBOS = not na(lastLow) and close < lastLow
+
+plotshape(bullishBOS, title="Bullish BOS", location=location.belowbar, style=shape.triangleup, text="BOS")
+plotshape(bearishBOS, title="Bearish BOS", location=location.abovebar, style=shape.triangledown, text="BOS")
