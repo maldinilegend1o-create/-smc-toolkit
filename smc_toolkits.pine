@@ -1,0 +1,18 @@
+//@version=6
+indicator("SMC Toolkit", overlay=true)
+
+// This is the first version of the SMC Toolkit.
+// More features will be added over time.
+
+// Plot the close price as a placeholder.
+plot(close, title="Close")
+
+// Roadmap:
+// - Fair Value Gaps (FVG)
+// - Break of Structure (BOS)
+// - Change of Character (CHoCH)
+// - Order Blocks (OB)
+// - Liquidity Sweeps
+// - Premium & Discount Zones
+// - Session Boxes
+// - Alerts
